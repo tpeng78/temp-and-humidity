@@ -58,8 +58,8 @@ $(function() {
 
 function setLED() {
   var url, i;
-
-    url = document.baseURI + 'inputs/' + i;
+  var arr = document.URL.split("/");
+    url = arr[0] + "//" + arr[2]  + '/inputs/' + i;
     $.getJSON(url, function (data) {
       console.log('API response received');
     });
