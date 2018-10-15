@@ -25,7 +25,7 @@ latest_humidity              = 0.0
 latest_temperature           = 0.0
 latest_value_datetime        = None
 ledpin                       = 17
-min_humidity                 = 80 
+min_humidity                 = 45 
 
 
 GPIO.setmode(GPIO.BCM)
