@@ -68,13 +68,6 @@ function setLED() {
 </script>
   <script>
     $(function() {
-      $("#refresh_historical_btn")
-        .button()
-        .click(function(event) {
-          getHistoricalSensordata();
-        });
-    });
-    $(function() {
       $("#refresh_latest_btn")
         .button()
         .click(function(event) {
@@ -122,10 +115,6 @@ function setLED() {
 <div id='led-control'>
 <h1>Control LED Light</h1>
 <input id="greenlight" type="checkbox">LED</input>
-</div>
-
-<div id='chart'>
-  <svg style='height:500px'></svg>
 </div>
 
 <script>
