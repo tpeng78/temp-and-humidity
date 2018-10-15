@@ -59,7 +59,7 @@ $(function() {
 function setLED() {
   var url, i;
 
-    url = document.URL + 'inputs/' + i;
+    url = document.baseURI + 'inputs/' + i;
     $.getJSON(url, function (data) {
       console.log('API response received');
     });
