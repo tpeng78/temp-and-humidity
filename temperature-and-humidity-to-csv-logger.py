@@ -17,12 +17,13 @@ hist_temperature_file_path   = "sensor-values/temperature_" + sensor_name + "_lo
 latest_temperature_file_path = "sensor-values/temperature_" + sensor_name + "_latest_value.csv"
 hist_humidity_file_path      = "sensor-values/humidity_" + sensor_name + "_log_" + str(date.today().year) + ".csv"
 latest_humidity_file_path    = "sensor-values/humidity_" + sensor_name + "_latest_value.csv"
-csv_header_temperature       = "timestamp,temperature_in_celsius\n"
+csv_header_temperature       = "timestamp,temperature_in_celsius,temperature_in_fahrenheit\n"
 csv_header_humidity          = "timestamp,relative_humidity\n"
 csv_entry_format             = "{:%Y-%m-%d %H:%M:%S},{:0.1f}\n"
 sec_between_log_entries      = 60
 latest_humidity              = 0.0
 latest_temperature           = 0.0
+latest_temperature_fahrenheit = 0.0
 latest_value_datetime        = None
 ledpin                       = 17
 min_humidity                 = 45 
@@ -47,12 +48,12 @@ def open_file_ensure_header(file_path, mode, csv_header):
   return f
 
 def write_hist_value_callback():
-  write_value(f_hist_temp, latest_value_datetime, latest_temperature)
+  write_value(f_hist_temp, latest_value_datetime, latest_temperature, latest_temperature_fahrenheit)
   write_value(f_hist_hum, latest_value_datetime, latest_humidity)
 
 def write_latest_value():
   with open_file_ensure_header(latest_temperature_file_path, 'w', csv_header_temperature) as f_latest_value:  #open and truncate
-    write_value(f_latest_value, latest_value_datetime, latest_temperature)
+    write_value(f_latest_value, latest_value_datetime, latest_temperature, latest_temperature_fahrenheit)
   with open_file_ensure_header(latest_humidity_file_path, 'w', csv_header_humidity) as f_latest_value:  #open and truncate
     write_value(f_latest_value, latest_value_datetime, latest_humidity)
 
@@ -75,6 +76,7 @@ try:
     hum, temp = Adafruit_DHT.read_retry(sensor, pin)
     if hum is not None and temp is not None:
       latest_humidity, latest_temperature = hum, temp
+      latest_temperature_fahrenheit = (temp * 9 / 5) + 32
       if hum < min_humidity:
         GPIO.output(ledpin,GPIO.HIGH) 
       else: 
