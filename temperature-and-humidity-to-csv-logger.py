@@ -42,7 +42,7 @@ def write_value(file_handle, datetime, value):
   file_handle.flush()
 
 def write_value_temp(file_handle, datetime, value, value2):
-  line = csv_entry_format.format(datetime, value)
+  line = csv_entry_format.format(datetime, value, value2)
   file_handle.write(line)
   file_handle.flush()  
 
