@@ -20,6 +20,7 @@ latest_humidity_file_path    = "sensor-values/humidity_" + sensor_name + "_lates
 csv_header_temperature       = "timestamp,temperature_in_celsius,temperature_in_fahrenheit\n"
 csv_header_humidity          = "timestamp,relative_humidity\n"
 csv_entry_format             = "{:%Y-%m-%d %H:%M:%S},{:0.1f}\n"
+csv_temp_entry_format        = "{:%Y-%m-%d %H:%M:%S},{:0.1f},{:0.1f}\n"
 sec_between_log_entries      = 60
 latest_humidity              = 0.0
 latest_temperature           = 0.0
@@ -42,7 +43,7 @@ def write_value(file_handle, datetime, value):
   file_handle.flush()
 
 def write_value_temp(file_handle, datetime, value, value2):
-  line = csv_entry_format.format(datetime, value, value2)
+  line = csv_temp_entry_format.format(datetime, value, value2)
   file_handle.write(line)
   file_handle.flush()  
 
@@ -81,7 +82,7 @@ try:
     hum, temp = Adafruit_DHT.read_retry(sensor, pin)
     if hum is not None and temp is not None:
       latest_humidity, latest_temperature = hum, temp
-      latest_temperature_fahrenheit = (temp * 9 / 5) + 32
+      latest_temperature_fahrenheit = (temp * 9.0 / 5.0) + 32.0
       if hum < min_humidity:
         GPIO.output(ledpin,GPIO.HIGH) 
       else: 
