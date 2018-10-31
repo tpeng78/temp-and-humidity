@@ -28,11 +28,18 @@ latest_temperature_fahrenheit = 0.0
 latest_value_datetime        = None
 ledpin                       = 17
 min_humidity                 = 45 
-
+latest_sensor_data           = None
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(ledpin,GPIO.OUT)
+
+class sensorData:
+  def __init__(self, temp, humidity, readTime):
+    self.tempCelsius = temp
+    self.humidity = humidity
+    self.readTime = readTime
+    self.tempFahrenheit = temp * 9.0 / 5.0 + 32.0 
 
 def write_header(file_handle, csv_header):
   file_handle.write(csv_header)
@@ -66,16 +73,16 @@ def write_latest_value():
 f_hist_temp = open_file_ensure_header(hist_temperature_file_path, 'a', csv_header_temperature)
 f_hist_hum  = open_file_ensure_header(hist_humidity_file_path, 'a', csv_header_humidity)
 
-print "Ignoring first 2 sensor values to improve quality..."
+print("Ignoring first 2 sensor values to improve quality...")
 for x in range(2):
   Adafruit_DHT.read_retry(sensor, pin)
 
-print "Creating interval timer. This step takes almost 2 minutes on the Raspberry Pi..."
+print("Creating interval timer. This step takes almost 2 minutes on the Raspberry Pi...")
 #create timer that is called every n seconds, without accumulating delays as when using sleep
 scheduler = BackgroundScheduler()
 scheduler.add_job(write_hist_value_callback, 'interval', seconds=sec_between_log_entries)
 scheduler.start()
-print "Started interval timer which will be called the first time in {0} seconds.".format(sec_between_log_entries);
+print("Started interval timer which will be called the first time in {0} seconds.".format(sec_between_log_entries));
 
 try:
   while True:
@@ -88,6 +95,7 @@ try:
       else: 
         GPIO.output(ledpin,GPIO.LOW)
       latest_value_datetime = datetime.today()
+      latest_sensor_data = sensorData(latest_temperature, latest_humidity, latest_value_datetime)
       write_latest_value()
     time.sleep(1)
 except (KeyboardInterrupt, SystemExit):
