@@ -99,7 +99,10 @@ app.get('/latest-sensordata', function(req, res) {
 });
 
 app.get('/readinputs/:id', function(req,res){
-  res.send(greenLed.readSync())
+  res.set('Content-Type', 'text/plain');
+  var mystatus = greenLed.readSync()
+  res.json({ 'status': mystatus })
+  res.send()
 });
 
 app.get('/inputs/:id', function (req, res) {
