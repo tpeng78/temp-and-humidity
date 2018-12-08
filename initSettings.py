@@ -1,6 +1,6 @@
 import json
 
-config = dict([('minHumidity',53)])
+config = dict([('minHumidity',53),('sensorName','kids-room')])
 try: 
     f = open("config.json","x")
     print("config.json does not exist, loading defaults...") 
