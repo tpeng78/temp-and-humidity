@@ -100,7 +100,7 @@ app.get('/latest-sensordata', function(req, res) {
 
 app.get('/readinputs/:id', function(req,res){
   res.send(greenLed.readSync())
-)};
+});
 
 app.get('/inputs/:id', function (req, res) {
   console.log('id = ' + req.params.id);
