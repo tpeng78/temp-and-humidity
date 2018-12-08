@@ -9,7 +9,7 @@ import os, sys, Adafruit_DHT, time
 from datetime import datetime, date
 from apscheduler.schedulers.background import BackgroundScheduler
 import RPi.GPIO as GPIO
-
+import readSettings
 sensor                       = Adafruit_DHT.AM2302 #DHT11/DHT22/AM2302
 pin                          = 4
 sensor_name                  = "living-room"
@@ -29,6 +29,8 @@ latest_value_datetime        = None
 ledpin                       = 17
 min_humidity                 = 45 
 latest_sensor_data           = None
+
+min_humidity = readSettings.getMinHumidity()
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
