@@ -12,8 +12,8 @@ import RPi.GPIO as GPIO
 import readSettings
 sensor                       = Adafruit_DHT.AM2302 #DHT11/DHT22/AM2302
 pin                          = 4
-min_humidity = readSettings.getMinHumidity()
-sensor_name = readSettings.getSensorName()
+min_humidity                 = readSettings.getMinHumidity()
+sensor_name                  = readSettings.getSensorName()
 hist_temperature_file_path   = "sensor-values/temperature_" + sensor_name + "_log_" + str(date.today().year) + ".csv"
 latest_temperature_file_path = "sensor-values/temperature_" + sensor_name + "_latest_value.csv"
 hist_humidity_file_path      = "sensor-values/humidity_" + sensor_name + "_log_" + str(date.today().year) + ".csv"
