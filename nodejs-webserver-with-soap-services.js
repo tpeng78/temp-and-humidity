@@ -77,6 +77,10 @@ function blinkLED() { //function to start blinking
   }
 }
 
+function readLED(){
+  greenLed.readSync()
+}
+
 app.get('/historical-sensordata', function(req, res) {
   res.header("Access-Control-Allow-Origin", "*"); //to allow the client calling this script be on another ip
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); //see comment above
@@ -93,6 +97,10 @@ app.get('/latest-sensordata', function(req, res) {
   res.type('application/json');
   buildResultRec([], latestSensorFilesPaths.slice(), NaN, NaN, res);
 });
+
+app.get('/readinputs/:id', function(req,res){
+  res.send(greenLed.readSync())
+)};
 
 app.get('/inputs/:id', function (req, res) {
   console.log('id = ' + req.params.id);
