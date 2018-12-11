@@ -10,6 +10,7 @@ from datetime import datetime, date
 from apscheduler.schedulers.background import BackgroundScheduler
 import RPi.GPIO as GPIO
 import readSettings
+import schedule
 sensor                       = Adafruit_DHT.AM2302 #DHT11/DHT22/AM2302
 pin                          = 4
 min_humidity                 = readSettings.getMinHumidity()
@@ -63,6 +64,8 @@ def open_file_ensure_header(file_path, mode, csv_header):
   return f
 
 def write_hist_value_callback():
+  tom = schedule.tempschedule()
+  min_humidity = tom.getScheduleHumidity()  
   write_value_temp(f_hist_temp, latest_value_datetime, latest_temperature, latest_temperature_fahrenheit)
   write_value(f_hist_hum, latest_value_datetime, latest_humidity)
 
