@@ -64,6 +64,7 @@ def open_file_ensure_header(file_path, mode, csv_header):
   return f
 
 def write_hist_value_callback():
+  global min_humidity
   tom = schedule.tempschedule()
   min_humidity = tom.getScheduleHumidity()  
   write_value_temp(f_hist_temp, latest_value_datetime, latest_temperature, latest_temperature_fahrenheit)
@@ -95,6 +96,7 @@ try:
     if hum is not None and temp is not None:
       latest_humidity, latest_temperature = hum, temp
       latest_temperature_fahrenheit = (temp * 9.0 / 5.0) + 32.0
+      #print("min humidity from loop: ", min_humidity)
       if hum < min_humidity:
         GPIO.output(ledpin,GPIO.HIGH) 
       else: 
@@ -102,7 +104,7 @@ try:
       latest_value_datetime = datetime.today()
       latest_sensor_data = sensorData(latest_temperature, latest_humidity, latest_value_datetime)
       write_latest_value()
-    time.sleep(1)
+    time.sleep(10)
 except (KeyboardInterrupt, SystemExit):
   scheduler.shutdown()
 
