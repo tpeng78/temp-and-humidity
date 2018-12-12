@@ -15,7 +15,7 @@ class tempschedule:
         self.scheduletype = "hourly"
         self.myschedules=[]
         self.myschedules.append(scheduleRecord(0, datetime.datetime.now().timestamp(), 8, 20, 80)); 
-        self.myschedules.append(scheduleRecord(0, datetime.datetime.now().timestamp(), 21, 50, 80)); 
+        self.myschedules.append(scheduleRecord(0, datetime.datetime.now().timestamp(), 19, 55, 80)); 
         self.myschedules.append(scheduleRecord(0, datetime.datetime.now().timestamp(), 7, 10, 80)); 
         #self.myschedules.append(9)
         #self.myschedules.append(20)
@@ -39,7 +39,7 @@ class tempschedule:
                 desiredHumidity = i.minHumidity
             else:
                 exit        
-        print("min humidity ", desiredHumidity)
+        #print("min humidity ", desiredHumidity)
         return desiredHumidity
 
 
