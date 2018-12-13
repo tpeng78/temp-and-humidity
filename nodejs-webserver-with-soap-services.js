@@ -98,7 +98,7 @@ app.get('/latest-sensordata', function(req, res) {
   buildResultRec([], latestSensorFilesPaths.slice(), NaN, NaN, res);
 });
 
-app.get('/readinputs/:id', function(req,res){
+app.get('/switchstatus/', function(req,res){
   res.set('Content-Type', 'text/plain');
   var mystatus = greenLed.readSync()
   res.json({ 'status': mystatus })

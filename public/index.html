@@ -100,6 +100,16 @@ function setLED() {
       });
     }
 
+    function getSwitchStatus(){
+      $.ajax({
+        url: "http://raspberrypi:9999/switchstatus/"
+      }).then(function(data)
+      {
+        $('#switchstatus').empty();
+        $('#switchstatus').append(data);
+      });
+    };
+    
     function getLatestSensordata() {
       $.ajax({
         url: soapServiceLatestDataUrl
@@ -168,6 +178,9 @@ function setLED() {
 <div id='led-control'>
 <h1>Control LED Light</h1>
 <input id="greenlight" type="checkbox">LED</input>
+</div>
+<div id='switchstatus'>
+  
 </div>
 
 <div id='chart'>
