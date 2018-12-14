@@ -99,7 +99,7 @@ app.get('/latest-sensordata', function(req, res) {
 });
 
 app.get('/switchstatus/', function(req,res){
-  res.set('Content-Type', 'text/plain');
+  res.set('Content-Type', 'application/json');
   var mystatus = greenLed.readSync()
   res.json({ 'status': mystatus })
   res.send()
