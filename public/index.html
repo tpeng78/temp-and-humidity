@@ -70,9 +70,8 @@ function setLED() {
 </script>
 
 <script>
-  $(document).ready( function() {
-    defaultDate = new Date();
-    $('#fromdate').val(defaultDate.toDateInputValue() );
+$(document).ready( function() {
+    $('#fromdate').val(new Date().toDateInputValue());
 });​
 </script>
   <script>
