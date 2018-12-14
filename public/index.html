@@ -106,11 +106,11 @@ function setLED() {
       }).then(function(data)
       {
         $('#switchstatus').empty();
-        var mystatus = $('#switchstatus').children();
+        var mystatus = $('#switchstatus')
         data.forEach(function(elem){
             mystatus.append("Switch Status: " + elem.status);
         });
-        $('#switchstatus').append(data);
+        $('#switchstatus').append(mystatus);
       });
     };
     
