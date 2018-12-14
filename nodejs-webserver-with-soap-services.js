@@ -99,6 +99,8 @@ app.get('/latest-sensordata', function(req, res) {
 });
 
 app.get('/switchstatus/', function(req,res){
+  res.header("Access-Control-Allow-Origin", "*"); //to allow the client calling this script be on another ip
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); //see comment above
   res.set('Content-Type', 'application/json');
   var mystatus = greenLed.readSync()
   res.json({ 'status': mystatus })
