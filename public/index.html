@@ -106,7 +106,8 @@ function setLED() {
       }).then(function(data)
       {
         $('#switchstatus').empty();
-        var mystatus = $('#switchstatus')
+        var mystatus = $('#switchstatus');
+        mystatus.append("The switch is ");
         data.forEach(function(elem){
             mystatus.append("Switch Status: " + elem.status);
         });
