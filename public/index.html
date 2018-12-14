@@ -56,6 +56,11 @@ $(function() {
      });
 });
 
+$(document).ready( function() {
+    defaultDate = new Date()
+    $('#fromdate').val(defaultDate.toDateInputValue() );
+});​
+
 function setLED() {
   var url, i;
 
