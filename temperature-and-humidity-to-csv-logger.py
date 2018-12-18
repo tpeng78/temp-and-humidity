@@ -14,6 +14,7 @@ import schedule
 sensor                       = Adafruit_DHT.AM2302 #DHT11/DHT22/AM2302
 pin                          = 4
 min_humidity                 = readSettings.getMinHumidity()
+max_humidity                 = readSettings.getMaxHumidit()
 sensor_name                  = readSettings.getSensorName()
 hist_temperature_file_path   = "sensor-values/temperature_" + sensor_name + "_log_" + str(date.today().year) + ".csv"
 latest_temperature_file_path = "sensor-values/temperature_" + sensor_name + "_latest_value.csv"
@@ -100,8 +101,11 @@ try:
       latest_humidity, latest_temperature = hum, temp
       latest_temperature_fahrenheit = (temp * 9.0 / 5.0) + 32.0
       #print("min humidity from loop: ", min_humidity)
-      if hum < min_humidity:
-        GPIO.output(ledpin,GPIO.HIGH) 
+      if hum <= min_humidity:
+        GPIO.output(ledpin,GPIO.HIGH)
+      elif: 
+        hum >= max_humidity:
+        GPIO.output(ledpin,GPIO.LOW)
       else: 
         GPIO.output(ledpin,GPIO.LOW)
       latest_value_datetime = datetime.today()
