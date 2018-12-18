@@ -4,8 +4,14 @@ def getMinHumidity():
     configString = f.read()
     config = json.loads(configString)
     myHumidity = config["minHumidity"]
-    print(myHumidity)
     return myHumidity
+
+def getMaxHumidity():
+    f = open("config.json","r")
+    configString = f.read()
+    config = json.loads(configString)
+    maxHumidity = config["maxHumidity"]
+    return maxHumidity
 
 def getSensorName():
     f = open("config.json","r")
