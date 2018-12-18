@@ -68,7 +68,7 @@ def write_hist_value_callback():
   global min_humidity
   tom = schedule.tempschedule()
   min_humidity = tom.getScheduleHumidity()  
-  logfile = open("humidity.log", "a")
+  logfile = open("humidity.log", "a", os.O_NONBLOCK)
   logfile.write("Minimum Humidity set to: " + str(min_humidity) + " at " + str(datetime.now()) + "\n")
   logfile.close()  
   write_value_temp(f_hist_temp, latest_value_datetime, latest_temperature, latest_temperature_fahrenheit)
