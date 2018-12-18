@@ -108,6 +108,7 @@ try:
         GPIO.output(ledpin,GPIO.LOW)
       else: 
         GPIO.output(ledpin,GPIO.LOW)
+      print("This is the PIN output: " + GPIO.input(ledpin))
       latest_value_datetime = datetime.today()
       latest_sensor_data = sensorData(latest_temperature, latest_humidity, latest_value_datetime)
       write_latest_value()
