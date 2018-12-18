@@ -103,8 +103,7 @@ try:
       #print("min humidity from loop: ", min_humidity)
       if hum <= min_humidity:
         GPIO.output(ledpin,GPIO.HIGH)
-      elif: 
-        hum >= max_humidity:
+      elif hum >= max_humidity:
         GPIO.output(ledpin,GPIO.LOW)
       else: 
         GPIO.output(ledpin,GPIO.LOW)
