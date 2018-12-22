@@ -24,6 +24,23 @@ except FileExistsError:
         exit
     config["maxHumidity"] = maxHumidity
 
+    minTemp = input("What's the minimum temperature? ")
+    f = open("config.json","w")
+    try:
+        minTemp = float(minTemp)
+    except ValueError:
+        print("That's not a number.")
+        exit
+    config["minTemp"] = minTemp
+
+    maxTemp = input("What's the maximum temperature? ")
+    try:
+        maxTemp = float(maxTemp)
+    except ValueError:
+        print("That's not a number.")
+        exit
+    config["maxTemp"] = maxTemp    
+
 
     f.write(json.dumps(config))
 

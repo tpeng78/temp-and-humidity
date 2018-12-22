@@ -23,6 +23,31 @@ def getMaxHumidity():
         exit
     return maxHumidity
 
+
+def getMinTemp():
+    f = open("config.json","r")
+    configString = f.read()
+    config = json.loads(configString)
+    minTemp = config["minTemp"]
+    try:
+        minTemp = float(minTemp)
+    except ValueError:
+        print("This is not a float. Check your config file.\n")
+        exit
+    return minTemp        
+
+def getMaxTemp():
+    f = open("config.json","r")
+    configString = f.read()
+    config = json.loads(configString)
+    maxTemp = config["maxTemp"]
+    try:
+        maxTemp = float(maxTemp)
+    except ValueError:
+        print("This is not a float. Check your config file.\n")
+        exit
+    return maxTemp     
+
 def getSensorName():
     f = open("config.json","r")
     configString = f.read()

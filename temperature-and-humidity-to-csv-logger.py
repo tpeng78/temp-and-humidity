@@ -15,6 +15,8 @@ sensor                       = Adafruit_DHT.AM2302 #DHT11/DHT22/AM2302
 pin                          = 4
 min_humidity                 = readSettings.getMinHumidity()
 max_humidity                 = readSettings.getMaxHumidity()
+min_temp                     = readSettings.getMinTemp()
+max_temp                     = readSettings.getMaxTemp()
 sensor_name                  = readSettings.getSensorName()
 hist_temperature_file_path   = "sensor-values/temperature_" + sensor_name + "_log_" + str(date.today().year) + ".csv"
 latest_temperature_file_path = "sensor-values/temperature_" + sensor_name + "_latest_value.csv"
@@ -30,6 +32,7 @@ latest_temperature           = 0.0
 latest_temperature_fahrenheit = 0.0
 latest_value_datetime        = None
 ledpin                       = 17
+heatpin                      = 9 
 latest_sensor_data           = None
 
 
@@ -37,6 +40,7 @@ latest_sensor_data           = None
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(ledpin,GPIO.OUT)
+GPIO.setup(heatpin,GPIO.OUT)
 
 class sensorData:
   def __init__(self, temp, humidity, readTime):
@@ -108,6 +112,14 @@ try:
       else: 
         GPIO.output(ledpin,GPIO.LOW)
       print("This is the PIN output: " + str(GPIO.input(ledpin)))
+
+      if temp <= min_temp:
+        GPIO.output(heatpin, GPIO.HIGH)
+      elif temp >= max_temp:
+        GPIO.output(heatpin,GPIO.LOW)
+      else:
+        GPIO.output(heatpin, GPIO.LOW)
+
       latest_value_datetime = datetime.today()
       latest_sensor_data = sensorData(latest_temperature, latest_humidity, latest_value_datetime)
       write_latest_value()
