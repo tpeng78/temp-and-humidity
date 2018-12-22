@@ -16,10 +16,10 @@ class tempschedule:
     def __init__(self):
         self.scheduletype = "hourly"
         self.myschedules=[]
-        self.myschedules.append(scheduleRecord(0, datetime.datetime.now().timestamp(), 8, 20, 21, 80, 82)); 
-        self.myschedules.append(scheduleRecord(0, datetime.datetime.now().timestamp(), 19, 40, 44, 80, 82)); 
-        self.myschedules.append(scheduleRecord(0, datetime.datetime.now().timestamp(), 7, 10, 11, 80, 82)); 
-        self.myschedules.append(scheduleRecord(0, datetime.datetime.now().timestamp(), 0, 40, 44, 80, 82));         
+        self.myschedules.append(scheduleRecord(0, datetime.datetime.now().timestamp(), 8, 20, 21, 18, 26)); 
+        self.myschedules.append(scheduleRecord(0, datetime.datetime.now().timestamp(), 19, 40, 44, 18, 26)); 
+        self.myschedules.append(scheduleRecord(0, datetime.datetime.now().timestamp(), 7, 10, 11, 18, 26)); 
+        self.myschedules.append(scheduleRecord(0, datetime.datetime.now().timestamp(), 0, 40, 44, 18, 26));         
         #print("schedule created")
         #for i in self.myschedules:
         #    print (i.starthour)

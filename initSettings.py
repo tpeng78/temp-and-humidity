@@ -7,6 +7,9 @@ try:
     f.write(json.dumps(config))
 except FileExistsError:
     print("config.json exists")
+
+    mode = input("What mode do you want to run? simple or schedule?")
+    config["mode"] = mode
     minHumidity = input("What's the minimum humidity? ")
     f = open("config.json","w")
     try:
