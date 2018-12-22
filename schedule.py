@@ -8,7 +8,7 @@ class scheduleRecord:
         self.minHumidity = minHumidity # at or below this, the humidifier will turn on 
         self.maxHumidity = maxHumidity # at this or above, the humidifier will turn off
         self.minTemp = minTemp # at or below this, the heater will turn on 
-        self.maxHumidity = maxHumidity # at or below this, the heater will turn off
+        self.maxTemp = maxTemp # at or below this, the heater will turn off
 
 
 class tempschedule:
@@ -33,14 +33,37 @@ class tempschedule:
         searchTime = datetime.datetime.fromtimestamp(timestamp)
 
         sortedSchedules = sorted(self.myschedules,key=self.getScheduleHour)
-        desiredHumidity = 20 
+        minHumidity = 20 
         for i in sortedSchedules:
             if searchTime.hour >= i.starthour: 
-                desiredHumidity = i.minHumidity
+                minHumidity = i.minHumidity
+                maxHumidity = i.maxHumidity
             else:
                 exit        
         #print("min humidity ", desiredHumidity)
-        return desiredHumidity
+        humidityParams = [minHumidity, maxHumidity]
+        return humidityParams
 
 
+    def getScheduleTemp(self):
+        currentTime = datetime.datetime.now()
+        timestamp = datetime.datetime.now().timestamp()
+        searchTime = datetime.datetime.fromtimestamp(timestamp)
 
+        sortedSchedules = sorted(self.myschedules,key=self.getScheduleHour)
+        minTemp = 20 
+        for i in sortedSchedules:
+            if searchTime.hour >= i.starthour: 
+                minTemp = i.minTemp
+                maxTemp = i.maxTemp
+            else:
+                exit        
+        #print("min humidity ", desiredHumidity)
+        tempParams = [minTemp, maxTemp]
+        return tempParams
+
+#myschedule = tempschedule()
+#humidity_params = tom.getScheduleHumidity()  
+#print(humidity_params)
+#temp_params = tom.getScheduleTemp()  
+#print(temp_params)

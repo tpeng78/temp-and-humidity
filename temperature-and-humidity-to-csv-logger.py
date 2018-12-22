@@ -69,9 +69,10 @@ def open_file_ensure_header(file_path, mode, csv_header):
   return f
 
 def write_hist_value_callback():
-  global min_humidity
+  global min_humidity, max_humidity, min_temp, max_temp
   tom = schedule.tempschedule()
-  min_humidity = tom.getScheduleHumidity()  
+  min_humidity, max_humidity = tom.getScheduleHumidity()  
+  min_temp, max_temp = tom.getScheduleTemp()  
   logfile = open("humidity.log", "a", os.O_NONBLOCK)
   logfile.write("Minimum Humidity set to: " + str(min_humidity) + " at " + str(datetime.now()) + "\n")
   logfile.close()  
