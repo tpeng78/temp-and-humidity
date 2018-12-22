@@ -32,7 +32,7 @@ latest_temperature           = 0.0
 latest_temperature_fahrenheit = 0.0
 latest_value_datetime        = None
 ledpin                       = 17
-heatpin                      = 9 
+heatpin                      = 19 
 latest_sensor_data           = None
 
 
