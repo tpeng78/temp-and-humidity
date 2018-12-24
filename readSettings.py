@@ -1,4 +1,17 @@
 import json
+
+#mode can be simple, scheduled, or daynight
+# simple - just set a simple min humidity/temp and a max humidity/temp
+# schedule - sets a min and max humidity/temp for any hour of the day
+# daynight - define what you consider day and night and then set a
+#            different min/max humidity/temp for day and night
+def getMode():
+    f = open("config.json","r")
+    configString = f.read()
+    config = json.loads(configString)
+    myMode = config["mode"]
+    return myMode
+
 def getMinHumidity():
     f = open("config.json","r")
     configString = f.read()

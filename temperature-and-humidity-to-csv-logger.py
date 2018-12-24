@@ -34,7 +34,7 @@ latest_value_datetime        = None
 ledpin                       = 17
 heatpin                      = 19 
 latest_sensor_data           = None
-mode                         = "simple"
+mode                         = readSettings.getMode()
 
 
 
