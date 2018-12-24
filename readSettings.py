@@ -12,6 +12,13 @@ def getMode():
     myMode = config["mode"]
     return myMode
 
+def getTempScale():
+    f = open("config.json","r")
+    configString = f.read()
+    config = json.loads(configString)
+    myTempScale = config["tempscale"]
+    return myTempScale    
+
 def getMinHumidity():
     f = open("config.json","r")
     configString = f.read()
