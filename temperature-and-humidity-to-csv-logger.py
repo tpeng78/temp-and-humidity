@@ -35,6 +35,7 @@ ledpin                       = 17
 heatpin                      = 19 
 latest_sensor_data           = None
 mode                         = readSettings.getMode()
+wait_time                    = 5 # seconds between ambient temp and humidity readings
 
 
 
@@ -126,7 +127,7 @@ try:
       latest_value_datetime = datetime.today()
       latest_sensor_data = sensorData(latest_temperature, latest_humidity, latest_value_datetime)
       write_latest_value()
-    time.sleep(10)
+    time.sleep(wait_time)
 except (KeyboardInterrupt, SystemExit):
   scheduler.shutdown()
 
